@@ -1,0 +1,10 @@
+a<-read.table("household.txt", header=T, sep=";")
+a$Date<-as.Date(a$Date, format="%d/%m/%Y")
+b<-a[(a$Date=="2007-02-01") | (a$Date=="2007-02-02")]
+b$Global_active_power<-as.numeric(as.character(b$Global_active_power))
+b$Global_reactive_power<-as.numeric(as.character(b$Global_reactive_power))
+b$Voltage<-as.numeric(as.character(b$Voltage))
+b<-transform(b,timestamp=as.POSIXct(paste(Date, Time)), "%d/%m/%Y %H:%M:%S")
+b$Sub_metering_1<-as.numeric(as.character(b$Sub_metering_1))
+b$Sub_metering_2<-as.numeric(as.character(b$Sub_metering_2))
+b$Sub_metering_3<-as.numeric(as.character(b$Sub_metering_3))
